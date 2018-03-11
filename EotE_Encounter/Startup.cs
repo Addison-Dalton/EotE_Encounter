@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using EotE_Encounter.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace EotE_Encounter
 {
@@ -21,6 +23,8 @@ namespace EotE_Encounter
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var connection = @"Server=(localdb)\mssqllocaldb;Database=EotE_Encounter.AspNetCore.NewDb;Trusted_Connection=True;MultipleActiveResultSets=true;ConnectRetryCount=0";
+            services.AddDbContext<EncounterContext>(options => options.UseSqlServer(connection));
             services.AddMvc();
         }
 
