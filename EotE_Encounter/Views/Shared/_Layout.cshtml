@@ -17,15 +17,6 @@
     </environment>
 </head>
 <body>
-    @Html.Partial("_navbar")
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; 2018 - EotE_Encounter</p>
-        </footer>
-    </div>
-
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
@@ -46,7 +37,14 @@
         </script>
         <script src="~/js/site.min.js" asp-append-version="true"></script>
     </environment>
-
+    @Html.Partial("_navbar")
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; 2018 - EotE_Encounter</p>
+        </footer>
+    </div>
     @RenderSection("Scripts", required: false)
 </body>
 </html>
