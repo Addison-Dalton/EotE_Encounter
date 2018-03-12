@@ -11,9 +11,10 @@ using System;
 namespace EotE_Encounter.Migrations
 {
     [DbContext(typeof(EncounterContext))]
-    partial class EncounterContextModelSnapshot : ModelSnapshot
+    [Migration("20180312190009_AddCharacterInitativeScore")]
+    partial class AddCharacterInitativeScore
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
