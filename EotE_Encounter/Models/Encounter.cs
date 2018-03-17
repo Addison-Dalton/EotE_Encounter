@@ -14,11 +14,9 @@ namespace EotE_Encounter.Models
             Round = 1;
             Characters = new List<Character>();
         }
-        //these first three properties may not be used just yet.
         public int Id { get; set; }
         public string Name { get; set; }
         public byte Round { get; set; }
-        //public List<String> CharacterIds { get; set; }
         [StringLength(2000)]
         public string Notes { get; set; }
 

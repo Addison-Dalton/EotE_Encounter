@@ -17,11 +17,15 @@ namespace EotE_Encounter.Controllers
         {
             _context = context;
         }
+
+        /*sets encounter name is "Encounter" if none is given
+         *saves encounter to DB
+         *
+         */
         [HttpPost]
         public ActionResult Create(Encounter encounter)
         {
-            
-            //eventaully I will add the Encounter as a table to the DB.
+            //consider doing this in encounter controller
             if (String.IsNullOrWhiteSpace(encounter.Name))
             {
                 encounter.Name = "Encounter";
@@ -31,11 +35,14 @@ namespace EotE_Encounter.Controllers
             return RedirectToAction("Details", new {encounterId = encounter.Id });
         }
 
+        /* gets the encounter from db based on encounterId.
+         * gets list of characters that encounterId's match the encounter.
+         * sorts list of characters based on IniativeScore
+         */
         public ActionResult Details(int encounterId)
         {
             Encounter encounter = _context.Encounters.Where(e => e.Id == encounterId).SingleOrDefault();
             List<Character> characters = _context.Characters.Where(c => c.Encounter.Id == encounterId).ToList();
-            //encounter.Characters.Sort((x, y) => x.IniativeScore.CompareTo(y.IniativeScore));
             encounter.Characters = encounter.Characters.OrderByDescending(c => c.IniativeScore).ToList();
             return PartialView("Details", encounter);
         }
