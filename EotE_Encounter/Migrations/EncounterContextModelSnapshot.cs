@@ -4,8 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using Microsoft.EntityFrameworkCore.Storage;
-using Microsoft.EntityFrameworkCore.Storage.Internal;
 using System;
 
 namespace EotE_Encounter.Migrations
@@ -27,6 +25,8 @@ namespace EotE_Encounter.Migrations
 
                     b.Property<byte>("Advantages");
 
+                    b.Property<int?>("EncounterId");
+
                     b.Property<short>("IniativeScore");
 
                     b.Property<string>("Name")
@@ -44,7 +44,33 @@ namespace EotE_Encounter.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("EncounterId");
+
                     b.ToTable("Characters");
+                });
+
+            modelBuilder.Entity("EotE_Encounter.Models.Encounter", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Name");
+
+                    b.Property<string>("Notes")
+                        .HasMaxLength(2000);
+
+                    b.Property<byte>("Round");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Encounters");
+                });
+
+            modelBuilder.Entity("EotE_Encounter.Models.Character", b =>
+                {
+                    b.HasOne("EotE_Encounter.Models.Encounter", "Encounter")
+                        .WithMany("CharactersInEncounter")
+                        .HasForeignKey("EncounterId");
                 });
 #pragma warning restore 612, 618
         }

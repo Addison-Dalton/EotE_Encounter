@@ -11,9 +11,9 @@ namespace EotE_Encounter.Models
         public int Id { get; set; }
         [Required][StringLength(250)]
         public string Name { get; set; }
-        public byte Triumphs { get; set; }
-        public byte Succeses { get; set; }
-        public byte Advantages { get; set; }
+        public byte Triumphs { get; set; } = 0;
+        public byte Succeses { get; set; } = 0;
+        public byte Advantages { get; set; } = 0;
         public short IniativeScore { get; set; } //this is calculated based on # of Triumphs, successes, and advantages
         public Encounter Encounter { get; set; }
         public bool Saved { get; set; }
@@ -34,11 +34,11 @@ namespace EotE_Encounter.Models
             character.IniativeScore = score;
         }
 
-        public void AddToEncounter(Encounter encounter, Character newCharacter)
+        public void AddToEncounter(Character newCharacter)
         {
             //add character to list, then sort by iniativeScore
-            encounter.CharactersInEncounter.Add(newCharacter);
-            encounter.CharactersInEncounter.Sort((x, y) => x.IniativeScore.CompareTo(y.IniativeScore));
+            newCharacter.Encounter.Characters.Add(newCharacter);
+            //newCharacter.Encounter.CharacterIds.Sort((x, y) => x.IniativeScore.CompareTo(y.IniativeScore));
 
             //MAY NOT NEED ANY OF THIS IF ABOVE CODE WORKS
             /*

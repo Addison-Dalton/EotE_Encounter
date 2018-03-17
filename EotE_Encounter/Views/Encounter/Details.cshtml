@@ -1,0 +1,30 @@
+﻿@model EotE_Encounter.Models.Encounter
+
+<div>
+    <h4>@Model.Name</h4>
+    <div>
+        <form asp-action="CreateCharacter" asp-controller="Character" data-bind="" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#character-container">
+            <input id="encounterId" name="encounterId" type="hidden" value="@Model.Id" />
+            <button class="btn btn-default" type="submit">Create Character</button>
+        </form>
+    </div>
+    <hr />
+    <div>
+        <ul>
+            
+            @{
+                if(Model.Characters != null)
+                {
+                    foreach(Character character in Model.Characters)
+                    {
+                        <li>@character.Name</li>
+                    }
+                }
+            }        
+        </ul>
+    </div>
+</div>
+
+<script>
+    console.log(@Model.Id);
+</script>

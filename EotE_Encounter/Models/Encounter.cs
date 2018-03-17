@@ -9,12 +9,20 @@ namespace EotE_Encounter.Models
 {
     public class Encounter
     {
+        public Encounter()
+        {
+            Round = 1;
+            Characters = new List<Character>();
+        }
         //these first three properties may not be used just yet.
         public int Id { get; set; }
         public string Name { get; set; }
         public byte Round { get; set; }
-        public List<Character> CharactersInEncounter { get; set; }
+        //public List<String> CharacterIds { get; set; }
         [StringLength(2000)]
         public string Notes { get; set; }
+
+        public List<Character> Characters { get; set; } //get this working
     }
+
 }

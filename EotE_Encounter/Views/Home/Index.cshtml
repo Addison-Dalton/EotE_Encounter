@@ -4,41 +4,19 @@
 
 <div class="row">
     @*iniative list*@
-    <div class="col-md-6 encounter-container">
-        @*encounter controls*@
-        <div>
-            <button id="create-character">Create Character</button>
-        </div>
-        @*List*@
-        <div>
+    <div id="encounter-container" class="col-md-6">
+        @{ await Html.RenderPartialAsync("~/Views/Encounter/Create.cshtml");}
 
-        </div>
     </div>
     @*info container*@
     <div class="col-md-6 encounter-container">
         @*character info*@
         <div id="character-container">
-            
 
         </div>
         @*encounter notes*@
         <div>
-            <textarea class="form-control"></textarea>
+            <!--<textarea class="form-control"></textarea>-->
         </div>
     </div>
 </div>
-
-<script>
-    $("#create-character").click(function () {
-        var url = '@Url.Action("CreateCharacter", "Character")';
-        $.ajax({
-            url: url,
-            type: 'GET',
-            success: function (data) {
-                $("#character-container").html(data);
-
-            }
-
-        });
-    });
-</script>

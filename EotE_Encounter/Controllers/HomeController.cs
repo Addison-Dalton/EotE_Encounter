@@ -5,6 +5,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using EotE_Encounter.Models;
+using EotE_Encounter.Data;
+using System.Data.Entity;
 
 namespace EotE_Encounter.Controllers
 {
@@ -32,11 +34,6 @@ namespace EotE_Encounter.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
-
-        public ActionResult CreateCharacter()
-        {
-            return PartialView("Add");
         }
     }
 }
