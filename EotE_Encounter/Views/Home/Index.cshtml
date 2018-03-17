@@ -2,16 +2,16 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="row">
+<div id="encounter-wrapper" class="row">
     @*iniative list*@
-    <div id="encounter-container" class="col-md-6">
+    <div id="encounter-container" class="col-md-6 eote-container-style">
         @{ await Html.RenderPartialAsync("~/Views/Encounter/Create.cshtml");}
 
     </div>
     @*info container*@
-    <div class="col-md-6 encounter-container">
+    <div class="col-md-6">
         @*character info*@
-        <div id="character-container">
+        <div id="character-container" class="eote-container-style">
 
         </div>
         @*encounter notes*@

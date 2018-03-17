@@ -23,7 +23,6 @@ namespace EotE_Encounter.Controllers
             return PartialView("Add");
         }
         
-        
        public ActionResult Add(Character character, int encounterId)
         {
             if (ModelState.IsValid)

@@ -10,18 +10,18 @@
     </div>
     <hr />
     <div>
-        <ul>
+        <div class="list-group">
             
             @{
                 if(Model.Characters != null)
                 {
                     foreach(Character character in Model.Characters)
                     {
-                        <li>@character.Name</li>
+                        <a class="list-group-item">@character.Name</a>
                     }
                 }
             }        
-        </ul>
+        </div>
     </div>
 </div>
 
