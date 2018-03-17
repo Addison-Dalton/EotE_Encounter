@@ -35,7 +35,8 @@ namespace EotE_Encounter.Controllers
         {
             Encounter encounter = _context.Encounters.Where(e => e.Id == encounterId).SingleOrDefault();
             List<Character> characters = _context.Characters.Where(c => c.Encounter.Id == encounterId).ToList();
-            encounter.Characters.Sort((x, y) => x.IniativeScore.CompareTo(y.IniativeScore));
+            //encounter.Characters.Sort((x, y) => x.IniativeScore.CompareTo(y.IniativeScore));
+            encounter.Characters = encounter.Characters.OrderByDescending(c => c.IniativeScore).ToList();
             return PartialView("Details", encounter);
         }
     }

@@ -1,7 +1,7 @@
 ﻿@model EotE_Encounter.Models.Encounter
 
 <div>
-    <h4>@Model.Name</h4>
+    <h3>@Model.Name</h3>
     <div>
         <form asp-action="CreateCharacter" asp-controller="Character" data-bind="" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#character-container">
             <input id="encounterId" name="encounterId" type="hidden" value="@Model.Id" />
