@@ -11,9 +11,10 @@ namespace EotE_Encounter.Data
     {
         public EncounterContext(DbContextOptions<EncounterContext> options) : base(options)
         {
-
+            
         }
 
         public DbSet<Character> Characters { get; set; }
+        public DbSet<Encounter> Encounters { get; set; }
     }
 }
