@@ -23,15 +23,15 @@ namespace EotE_Encounter.Models
         /*calculates the IniativeScore for a character.
          * This is done by giving triumps, successes, and advantages a multiplier value. Multiple the value by number of each role to get overall score.
          */
-        public void SetIniativeScore(Character character)
+        public void SetIniativeScore()
         {
             const short TRIUMPH_MULTIPLIER = 250;
             const short SUCCESS_MULTIPLER = 20;
             const short ADVANTAGE_MULTIPLER = 1;
             short score = 0;
 
-            score = (Int16)((character.Triumphs * TRIUMPH_MULTIPLIER) + (character.Succeses * SUCCESS_MULTIPLER) + (character.Advantages + ADVANTAGE_MULTIPLER));
-            character.IniativeScore = score;
+            score = (Int16)((this.Triumphs * TRIUMPH_MULTIPLIER) + (this.Succeses * SUCCESS_MULTIPLER) + (this.Advantages + ADVANTAGE_MULTIPLER));
+            this.IniativeScore = score;
         }
     }
 }
