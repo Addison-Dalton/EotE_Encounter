@@ -23,17 +23,39 @@ namespace EotE_Encounter.Controllers
             return PartialView("Add");
         }
         
-       public ActionResult Add(Character character, int encounterId)
+        public ActionResult Add(Character character, int encounterId)
         {
             if (ModelState.IsValid)
             {
                 character.Encounter = _context.Encounters.Where(e => e.Id.Equals(encounterId)).SingleOrDefault();
-                character.SetIniativeScore(character);
+                character.SetIniativeScore();
                 _context.Characters.Add(character);
                 _context.SaveChanges();
                 return RedirectToAction("Details", "Encounter", new {encounterId});
             }
             return PartialView();
+        }
+
+
+        public ActionResult Edit(Character character)
+        {
+            if (ModelState.IsValid)
+            {
+                Character oldCharacter = _context.Characters.Where(c => c.Id.Equals(character.Id)).SingleOrDefault();
+                _context.Entry(oldCharacter).CurrentValues.SetValues(character);
+                oldCharacter.SetIniativeScore();
+                _context.SaveChanges();
+
+                return RedirectToAction("Details", "Encounter", new {encounterId = character.Encounter.Id });
+            }
+            return PartialView("Details", character);
+        }
+
+        public ActionResult Details(int characterId)
+        {
+            Character character = _context.Characters.Where(c => c.Id.Equals(characterId)).SingleOrDefault();
+
+            return PartialView("Details", character);
         }
     }
 }
