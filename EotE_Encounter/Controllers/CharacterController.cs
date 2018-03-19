@@ -27,6 +27,7 @@ namespace EotE_Encounter.Controllers
         {
             if (ModelState.IsValid)
             {
+                character.EncounterId = encounterId;
                 character.Encounter = _context.Encounters.Where(e => e.Id.Equals(encounterId)).SingleOrDefault();
                 character.SetIniativeScore();
                 _context.Characters.Add(character);
@@ -46,7 +47,7 @@ namespace EotE_Encounter.Controllers
                 oldCharacter.SetIniativeScore();
                 _context.SaveChanges();
 
-                return RedirectToAction("Details", "Encounter", new {encounterId = character.Encounter.Id });
+                return RedirectToAction("Details", "Encounter", new {encounterId = character.EncounterId });
             }
             return PartialView("Details", character);
         }
@@ -54,7 +55,7 @@ namespace EotE_Encounter.Controllers
         public ActionResult Details(int characterId)
         {
             Character character = _context.Characters.Where(c => c.Id.Equals(characterId)).SingleOrDefault();
-
+            _context.Entry(character).Reload();
             return PartialView("Details", character);
         }
     }

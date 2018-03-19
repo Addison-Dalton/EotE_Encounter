@@ -30,6 +30,7 @@ namespace EotE_Encounter.Controllers
             {
                 encounter.Name = "Encounter";
             }
+
             _context.Encounters.Add(encounter);
             _context.SaveChanges();
             return RedirectToAction("Details", new {encounterId = encounter.Id });
