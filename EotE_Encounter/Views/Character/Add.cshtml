@@ -60,3 +60,11 @@
         <button type="submit" class="btn btn-default">Add</button>
     </div>
 </form>
+
+<script>
+    $("form").submit(function (e) {
+        e.preventDefault();
+        $("#character-container").html("");
+
+    });
+</script>
