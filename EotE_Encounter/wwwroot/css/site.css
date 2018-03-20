@@ -22,6 +22,10 @@
     width: 100%;
 }
 
+.textarea-disable-resize{
+    resize:none;
+}
+
 /* QR code generator */
 #qrCode {
     margin: 15px;
@@ -46,8 +50,12 @@
     background-color: white;
 }
 
+#encounter-container h3 {
+    margin-top: 5px;
+}
+
 #character-container h3{
-    margin-top:5px;
+    margin-top: 5px;
 }
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {

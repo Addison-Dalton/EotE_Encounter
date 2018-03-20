@@ -1,26 +1,26 @@
 ﻿@model EotE_Encounter.Models.Encounter
 
+
+<h3>@Model.Name</h3>
 <div>
-    <h3>@Model.Name</h3>
-    <div>
-        <form asp-action="CreateCharacter" asp-controller="Character" data-bind="" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#character-container">
-            <input id="encounterId" name="encounterId" type="hidden" value="@Model.Id" />
-            <button class="btn btn-default" type="submit">Create Character</button>
-        </form>
-    </div>
-    <hr />
-    <div>
-        <div class="list-group">
-            <a asp-action="CreateCharacter" asp-controller="Character" asp-route-encounterId="@Model.Id" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#character-container" class="list-group-item"><strong>Add a new character</strong></a>
-            @{
-                if(Model.Characters != null)
+    <form asp-action="CreateCharacter" asp-controller="Character" data-bind="" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#character-container">
+        <input id="encounterId" name="encounterId" type="hidden" value="@Model.Id" />
+        <button class="btn btn-default" type="submit">Create Character</button>
+    </form>
+</div>
+<hr />
+<div>
+    <div class="list-group">
+        <a asp-action="CreateCharacter" asp-controller="Character" asp-route-encounterId="@Model.Id" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#character-container" class="list-group-item"><strong>Add a new character</strong></a>
+        @{
+            if(Model.Characters != null)
+            {
+                foreach(Character character in Model.Characters)
                 {
-                    foreach(Character character in Model.Characters)
-                    {
-                        <a asp-action="Details" asp-controller="Character" asp-route-characterId="@character.Id" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#character-container" class="list-group-item">@character.Name</a>
-                    }
+                    <a asp-action="Details" asp-controller="Character" asp-route-characterId="@character.Id" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#character-container" class="list-group-item">@character.Name</a>
                 }
-            }        
-        </div>
+            }
+        }        
     </div>
 </div>
+
