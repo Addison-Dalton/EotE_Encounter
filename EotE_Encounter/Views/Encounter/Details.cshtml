@@ -11,7 +11,7 @@
     <hr />
     <div>
         <div class="list-group">
-            
+            <a asp-action="CreateCharacter" asp-controller="Character" asp-route-encounterId="@Model.Id" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#character-container" class="list-group-item"><strong>Add a new character</strong></a>
             @{
                 if(Model.Characters != null)
                 {
