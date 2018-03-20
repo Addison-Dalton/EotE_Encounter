@@ -11,16 +11,32 @@
 <hr />
 <div>
     <div class="list-group">
-        <a asp-action="CreateCharacter" asp-controller="Character" asp-route-encounterId="@Model.Id" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#character-container" class="list-group-item"><strong>Add a new character</strong></a>
+        <a id="add-character-item" asp-action="CreateCharacter" asp-controller="Character" asp-route-encounterId="@Model.Id" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#character-container" class="list-group-item"><strong>Add a new character</strong></a>
         @{
-            if(Model.Characters != null)
+            if (Model.Characters != null)
             {
-                foreach(Character character in Model.Characters)
+                foreach (Character character in Model.Characters)
                 {
-                    <a asp-action="Details" asp-controller="Character" asp-route-characterId="@character.Id" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#character-container" class="list-group-item">@character.Name</a>
+                    <div class="list-group-item">
+                        <div class="row">
+                            <div id="iniative-character-name" class="col-md-11">
+                                <a asp-action="Details" asp-controller="Character" asp-route-characterId="@character.Id" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#character-container" class="iniative-item"><h4>@character.Name</h4></a>
+                            </div>
+                            <div id="iniative-move-arrows" class="col-md-1">
+                                <a><span class="glyphicon glyphicon-menu-up"></span></a>
+                                <a><span class="glyphicon glyphicon-menu-down display-block"></span></a>
+                            </div>
+                        </div>
+                        
+                    </div>
                 }
             }
-        }        
+        }
     </div>
 </div>
 
+<script>
+    $(".glyphicon").click(function myfunction() {
+        console.log("working");
+    });
+</script>
