@@ -58,5 +58,13 @@ namespace EotE_Encounter.Controllers
             _context.Entry(character).Reload();
             return PartialView("Details", character);
         }
+
+        public ActionResult Delete(int characterId)
+        {
+            Character character = _context.Characters.Where(c => c.Id == characterId).SingleOrDefault();
+            _context.Characters.Remove(character);
+            _context.SaveChanges();
+            return RedirectToAction("Details", "Encounter", new { encounterId = character.EncounterId });
+        }
     }
 }
