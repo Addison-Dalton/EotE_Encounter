@@ -23,8 +23,12 @@
                                 <a asp-action="Details" asp-controller="Character" asp-route-characterId="@character.Id" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#character-container" class="iniative-item"><h4>@character.Name</h4></a>
                             </div>
                             <div id="iniative-move-arrows" class="col-md-1">
-                                <a><span class="glyphicon glyphicon-menu-up"></span></a>
-                                <a><span class="glyphicon glyphicon-menu-down display-block"></span></a>
+                                <a asp-action="ChangeInitiative" asp-controller="Encounter" asp-route-characterId="@character.Id" asp-route-direction="up" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#encounter-container">
+                                    <span class="glyphicon glyphicon-menu-up"></span>
+                                </a>
+                                <a asp-action="ChangeInitiative" asp-controller="Encounter" asp-route-characterId="@character.Id" asp-route-direction="down" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#encounter-container">
+                                    <span class="glyphicon glyphicon-menu-down display-block"></span>
+                                </a>
                             </div>
                         </div>
                         
@@ -34,9 +38,3 @@
         }
     </div>
 </div>
-
-<script>
-    $(".glyphicon").click(function myfunction() {
-        console.log("working");
-    });
-</script>
