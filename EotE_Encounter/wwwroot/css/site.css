@@ -43,6 +43,11 @@ a:hover{
     margin: 15px;
 }
 
+#create-encounter{
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
 #encounter-wrapper{
     margin-top:35px;
 }
@@ -52,19 +57,28 @@ a:hover{
 }
 
 #character-container {
-    height: 450px;
+    height: 455px;
 }
 
-.eote-container-style {
-    padding:15px;
+.eote-container-style {    
     border: 3px solid #571C0E;
     border-radius: 10px;
     background-color: white;
 }
 
-#add-character-item{
+.character-form{
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+#add-character-item {
     padding-top: 10px;
     padding-bottom: 10px;
+}
+
+.list-group{
+    padding-left:15px;
+    padding-right:15px
 }
 .list-group-item {
     padding-top: 0px;
@@ -88,6 +102,9 @@ a:hover{
     cursor: pointer;
 }
 
+.no-padding{
+    padding:0 !important;
+}
 .iniative-item h4 {
     margin: 0;
     padding-top: 12px;
@@ -96,14 +113,28 @@ a:hover{
     font-weight: bold;
     text-decoration: none;
 }
+#character-container h3 {
+    margin-top: 0px;
+    color: #fff;
+    padding: 15px;
+    background-color: #571C0E;
+}
 
 #encounter-container h3 {
-    margin-top: 5px;
+    margin-top: 0px;
+    color: #fff;
+    padding: 15px;
+    background-color: #571C0E;
 }
 
-#character-container h3{
-    margin-top: 5px;
+#encounter-controls {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    padding: 15px;
+    background-color: #571C0E;
 }
+
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {
     /* Hide captions */

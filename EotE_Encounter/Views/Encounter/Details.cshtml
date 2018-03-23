@@ -1,14 +1,7 @@
 ﻿@model EotE_Encounter.Models.Encounter
 
 
-<h3>@Model.Name</h3>
-<div>
-    <form asp-action="CreateCharacter" asp-controller="Character" data-bind="" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#character-container">
-        <input id="encounterId" name="encounterId" type="hidden" value="@Model.Id" />
-        <button class="btn btn-default" type="submit">Create Character</button>
-    </form>
-</div>
-<hr />
+<h3 class="encounter-title">@Model.Name</h3>
 <div>
     <div class="list-group">
         <a id="add-character-item" asp-action="CreateCharacter" asp-controller="Character" asp-route-encounterId="@Model.Id" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#character-container" class="list-group-item"><strong>Add a new character</strong></a>
@@ -36,5 +29,8 @@
                 }
             }
         }
+    </div>
+    <div id="encounter-controls">
+        <a class="btn btn-danger">Clear Encounter</a>
     </div>
 </div>

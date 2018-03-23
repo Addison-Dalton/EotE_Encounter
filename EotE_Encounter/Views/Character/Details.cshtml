@@ -26,7 +26,7 @@
     }
 }
 <h3>Edit @Model.Name</h3>
-<form asp-controller="Character" asp-action="Edit" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#encounter-container">
+<form class="character-form" asp-controller="Character" asp-action="Edit" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#encounter-container">
     <div class="form-group">
         @Html.LabelFor(c => c.Name)
         @Html.TextBoxFor(c => c.Name, new { @class = "form-control" })
