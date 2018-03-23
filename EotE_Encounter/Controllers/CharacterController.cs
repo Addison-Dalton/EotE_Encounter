@@ -43,8 +43,17 @@ namespace EotE_Encounter.Controllers
             if (ModelState.IsValid)
             {
                 Character oldCharacter = _context.Characters.Where(c => c.Id.Equals(character.Id)).SingleOrDefault();
-                _context.Entry(oldCharacter).CurrentValues.SetValues(character);
-                oldCharacter.SetIniativeScore();
+                
+                //if the number if triupmhs, successes, or advantages have changed, update the IniativeScore
+                if(oldCharacter.Triumphs != character.Triumphs || oldCharacter.Succeses != character.Succeses || oldCharacter.Advantages != character.Advantages)
+                {
+                    _context.Entry(oldCharacter).CurrentValues.SetValues(character);
+                    oldCharacter.SetIniativeScore();
+                }
+                else
+                {
+                    _context.Entry(oldCharacter).CurrentValues.SetValues(character);
+                }
                 _context.SaveChanges();
 
                 return RedirectToAction("Details", "Encounter", new {encounterId = character.EncounterId });
