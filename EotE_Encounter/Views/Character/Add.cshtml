@@ -26,10 +26,10 @@
     }
 }
 <h3>Add a Character</h3>
-<form class="character-form" asp-controller="Character" asp-action="Add" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#encounter-container" >
+<form class="character-form" onsubmit="return validateForm()" asp-controller="Character" asp-action="Add" data-ajax="false" data-ajax-mode="replace" data-ajax-update="#encounter-container" >
     <div class="form-group">
         @Html.LabelFor(c => c.Name)
-        @Html.TextBoxFor(c => c.Name, new { @class = "form-control" })
+        @Html.TextBoxFor(c => c.Name, new { @class = "form-control"})
     </div>
     <div class="form-group row">
         <div class="col-sm-4">
@@ -38,7 +38,7 @@
         </div>
         <div class="col-sm-4">
             @Html.LabelFor(c => c.Succeses)
-            @Html.DropDownListFor(c => c.Succeses, listItems, "Number of Successes", new { @class = "form-control" })
+            @Html.DropDownListFor(c => c.Succeses, listItems, "Number of Succeses", new { @class = "form-control" })
         </div>
         <div class="col-sm-4">
             @Html.LabelFor(c => c.Advantages)
@@ -62,9 +62,33 @@
 </form>
 
 <script>
-    $("form").submit(function (e) {
-        e.preventDefault();
-        $("#character-container").html("");
+        var formSubmitted = false;
+        function validateForm()
+        {
+            if ($("#Name").val() != "") {
+                if ($("#Triumphs").val() != 0 || $("#Succeses").val() != 0 || $("#Advantages").val() != 0) {
+                    formSubmitted = true;
+                    $("form").attr("data-ajax", "true");
+                    return true;
+                } else {
+                    return false;
 
-    });
+                }
+
+            }
+            else {
+                //do something here that will stop the form from submitting. 
+                return false;
+            }
+        }
+
+        $("form").submit(function () {
+            if (formSubmitted) {
+                $("#character-container").html("");
+
+            }
+        });
+
+
+
 </script>

@@ -26,7 +26,7 @@
     }
 }
 <h3>Edit @Model.Name</h3>
-<form class="character-form" asp-controller="Character" asp-action="Edit" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#encounter-container">
+<form class="character-form" onsubmit="return validateForm()" asp-controller="Character" asp-action="Edit" data-ajax="false" data-ajax-mode="replace" data-ajax-update="#encounter-container">
     <div class="form-group">
         @Html.LabelFor(c => c.Name)
         @Html.TextBoxFor(c => c.Name, new { @class = "form-control" })
@@ -38,7 +38,7 @@
         </div>
         <div class="col-sm-4">
             @Html.LabelFor(c => c.Succeses)
-            @Html.DropDownListFor(c => c.Succeses, listItems, "Number of Successes", new { @class = "form-control" })
+            @Html.DropDownListFor(c => c.Succeses, listItems, "Number of Succeses", new { @class = "form-control" })
         </div>
         <div class="col-sm-4">
             @Html.LabelFor(c => c.Advantages)
@@ -74,10 +74,30 @@
 </form>
 
 <script>
-    $("form").submit(function (e) {
-        e.preventDefault();
-        $("#character-container").html("");
+    var formSubmitted = false;
+    function validateForm() {
+        if ($("#Name").val() != "") {
+            if ($("#Triumphs").val() != 0 || $("#Succeses").val() != 0 || $("#Advantages").val() != 0) {
+                formSubmitted = true;
+                $("form").attr("data-ajax", "true");
+                return true;
+            } else {
+                //show all three roles in red, or have message somewhere that you must input at least one role.
+                return false;
+            }
 
+        }
+        else {
+            //show name in red
+            return false;
+        }
+    }
+
+    $("form").submit(function () {
+        if (formSubmitted) {
+            $("#character-container").html("");
+
+        }
     });
 
     $("#delete-character").click(function (e) {
