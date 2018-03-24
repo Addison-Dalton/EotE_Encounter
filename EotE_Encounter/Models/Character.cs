@@ -17,7 +17,7 @@ namespace EotE_Encounter.Models
         public byte Advantages { get; set; } = 0;
         public short IniativeScore { get; set; } //this is calculated based on # of Triumphs, successes, and advantages
         public Encounter Encounter { get; set; }
-        public int EncounterId { get; set; }
+        public int? EncounterId { get; set; }
         public bool Saved { get; set; }
         [StringLength(1000)]
         public string Notes { get; set; }
