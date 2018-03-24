@@ -1,9 +1,9 @@
 ﻿@model EotE_Encounter.Models.Character
-@{ 
+@{
     List<SelectListItem> listItems = new List<SelectListItem>();
-    for(int i = 0; i <= 10; i++)
+    for (int i = 0; i <= 10; i++)
     {
-        if(i == 0)
+        if (i == 0)
         {
             listItems.Add(new SelectListItem
             {
@@ -26,10 +26,10 @@
     }
 }
 <h3>Add a Character</h3>
-<form class="character-form" onsubmit="return validateForm()" asp-controller="Character" asp-action="Add" data-ajax="false" data-ajax-mode="replace" data-ajax-update="#encounter-container" >
+<form class="character-form" onsubmit="return validateForm()" asp-controller="Character" asp-action="Add" data-ajax="false" data-ajax-mode="replace" data-ajax-update="#encounter-container">
     <div class="form-group">
         @Html.LabelFor(c => c.Name)
-        @Html.TextBoxFor(c => c.Name, new { @class = "form-control"})
+        @Html.TextBoxFor(c => c.Name, new { @class = "form-control" })
     </div>
     <div class="form-group row">
         <div class="col-sm-4">
@@ -47,11 +47,11 @@
     </div>
     <div class="form-group">
         @Html.LabelFor(c => c.Notes)
-        @Html.TextAreaFor(c => c.Notes,  new { @rows=4, @class = "form-control textarea-disable-resize" })
+        @Html.TextAreaFor(c => c.Notes, new { @rows = 4, @class = "form-control textarea-disable-resize" })
     </div>
     <div class="form-group">
         @Html.LabelFor(c => c.Saved)
-        @Html.CheckBoxFor(c =>c.Saved, new { @class = "checkbox"})
+        @Html.CheckBoxFor(c => c.Saved, new { @class = "checkbox" })
     </div>
     <div>
         <input type="hidden" id="encounterId" name="encounterId" value="@ViewBag.EncounterId" />
@@ -62,33 +62,31 @@
 </form>
 
 <script>
-        var formSubmitted = false;
-        function validateForm()
-        {
-            if ($("#Name").val() != "") {
-                if ($("#Triumphs").val() != 0 || $("#Succeses").val() != 0 || $("#Advantages").val() != 0) {
-                    formSubmitted = true;
-                    $("form").attr("data-ajax", "true");
-                    return true;
-                } else {
-                    return false;
-
-                }
-
-            }
-            else {
-                //do something here that will stop the form from submitting. 
-                return false;
-            }
+    var formSubmitted = false;
+    //validate that both name and at least one dice role has been entered
+    function validateForm() {
+        if ($("#Name").val() != "") {
+            formSubmitted = true;
+            $("form").attr("data-ajax", "true");
+            return true;
         }
+        else {
+            $("#Name").addClass("alert-border")
+            return false;
+        }
+    }
 
-        $("form").submit(function () {
-            if (formSubmitted) {
-                $("#character-container").html("");
+    //on form submission, if the form has been validated, set the character container to be empty.
+    $("form").submit(function () {
+        if (formSubmitted) {
+            $("#character-container").html("");
+        }
+    });
 
-            }
-        });
+    //remove red alert border when name input is clicked again
+    $("#Name").on("click", function () {
+        $("#Name").removeClass("alert-border");
 
-
+    });
 
 </script>

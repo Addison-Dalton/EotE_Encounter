@@ -75,24 +75,27 @@
 
 <script>
     var formSubmitted = false;
+    //validate that both name and at least one dice role has been entered
     function validateForm() {
         if ($("#Name").val() != "") {
-            if ($("#Triumphs").val() != 0 || $("#Succeses").val() != 0 || $("#Advantages").val() != 0) {
-                formSubmitted = true;
-                $("form").attr("data-ajax", "true");
-                return true;
-            } else {
-                //show all three roles in red, or have message somewhere that you must input at least one role.
-                return false;
-            }
+            formSubmitted = true;
+            $("form").attr("data-ajax", "true");
+            return true;
 
         }
         else {
-            //show name in red
+            $("#Name").addClass("alert-border")
             return false;
         }
     }
 
+    //remove red alert border when name input is clicked again
+    $("#Name").on("click", function (elem) {
+        $("#Name").removeClass("alert-border");
+
+    });
+
+    //on form submission, if the form has been validated, set the character container to be empty.
     $("form").submit(function () {
         if (formSubmitted) {
             $("#character-container").html("");
@@ -100,6 +103,7 @@
         }
     });
 
+    //when the character has been deleted, set the character container to be empty 
     $("#delete-character").click(function (e) {
         e.preventDefault();
         $("#character-container").html("");
