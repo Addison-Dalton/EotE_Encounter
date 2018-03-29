@@ -87,8 +87,8 @@ a:hover{
     padding-right:15px
 }
 .list-group-item {
-    padding-top: 0px;
-    padding-bottom: 0px;
+    padding-top: 0;
+    padding-bottom: 0;
 }
 
 .display-block{
@@ -119,15 +119,22 @@ a:hover{
     font-weight: bold;
     text-decoration: none;
 }
+
+.current-turn {
+    -webkit-box-shadow: 0 0 10px 1px #4f8cef;
+    -moz-box-shadow: 0 0 10px 1px #4f8cef;
+    box-shadow: 0 0 10px 1px #4f8cef;
+    z-index: 100;
+}
 #character-container h3 {
-    margin-top: 0px;
+    margin-top: 0;
     color: #fff;
     padding: 15px;
     background-color: #571C0E;
 }
 
 #encounter-container h3 {
-    margin-top: 0px;
+    margin-top: 0;
     color: #fff;
     padding: 15px;
     background-color: #571C0E;
@@ -139,6 +146,11 @@ a:hover{
     bottom: 0;
     padding: 15px;
     background-color: #571C0E;
+}
+
+#encounter-container .row{
+    margin-right: 0;
+    margin-left: 0;
 }
 
 /* Hide/rearrange for smaller screens */

@@ -80,6 +80,13 @@ namespace EotE_Encounter.Controllers
                         movedCharacter.IniativeScore = characters[i].IniativeScore;
                         characters[i].IniativeScore = tempInitiativeScore;
                     }
+
+                    if (movedCharacter.Turn == true)
+                    {
+                        int movedCharacterIndex = characters.IndexOf(movedCharacter);
+                        movedCharacter.Turn = false;
+                        characters[movedCharacterIndex + 1].Turn = true;
+                    }
                 }
             }else if (direction == MOVE_DOWN)
             {
@@ -89,6 +96,12 @@ namespace EotE_Encounter.Controllers
                     int movedCharacterIndex = characters.IndexOf(movedCharacter);
                     movedCharacter.IniativeScore = characters[movedCharacterIndex + 1].IniativeScore;
                     characters[movedCharacterIndex + 1].IniativeScore = tempInitiativeScore;
+
+                    if (movedCharacter.Turn == true)
+                    {
+                        movedCharacter.Turn = false;
+                        characters[movedCharacterIndex + 1].Turn = true;
+                    }
                 }
                 else
                 {
