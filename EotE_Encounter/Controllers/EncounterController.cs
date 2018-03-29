@@ -70,6 +70,12 @@ namespace EotE_Encounter.Controllers
                     int movedCharacterIndex = characters.IndexOf(movedCharacter);
                     movedCharacter.IniativeScore = characters[movedCharacterIndex - 1].IniativeScore;
                     characters[movedCharacterIndex - 1].IniativeScore = tempInitiativeScore;
+
+                    if(characters[movedCharacterIndex - 1].Turn == true)
+                    {
+                        characters[movedCharacterIndex - 1].Turn = false;
+                        movedCharacter.Turn = true;
+                    }
                 }
                 else
                 {
