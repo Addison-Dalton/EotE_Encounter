@@ -39,7 +39,7 @@ namespace EotE_Encounter.Controllers
                 else
                 {
                     List<Character> characters = _context.Characters.ToList();
-                    if (character.IniativeScore >= _context.Characters.OrderByDescending(c => c.IniativeScore).First().IniativeScore)
+                    if (character.IniativeScore > _context.Characters.OrderByDescending(c => c.IniativeScore).First().IniativeScore)
                     {
                         foreach(Character characterInDB in characters)
                         {
