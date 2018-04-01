@@ -15,8 +15,8 @@
 
         </div>
         @*encounter notes*@
-        <div>
-            <!--<textarea class="form-control"></textarea>-->
+        <div id="encounter-notes" class="eote-container-style">
+            @{ await Html.RenderPartialAsync("~/Views/Encounter/Notes.cshtml");}
         </div>
     </div>
 </div>
