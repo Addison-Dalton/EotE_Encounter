@@ -69,7 +69,7 @@
     <div class="btn-toolbar">
         <button type="submit" class="btn btn-default">Edit</button>
          <button type="button" class="btn btn-default cancel-btn">Cancel</button>
-        <a id="delete-character" class="btn btn-danger" asp-action="Delete" asp-controller="Character" asp-route-characterId="@Model.Id" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#encounter-container" onclick="return confirm('Are you sure you want to delete @Model.Name?')">
+        <a id="delete-character" class="btn btn-danger" asp-action="Delete" asp-controller="Character" asp-route-characterId="@Model.Id" data-ajax="false" data-ajax-mode="replace" data-ajax-update="#encounter-container" onclick="return confirmDelete()">
             <span class="glyphicon glyphicon-remove-circle"></span> Delete
         </a>
     </div>
@@ -78,6 +78,7 @@
 
 <script>
     var formSubmitted = false;
+    var deleteConfirmed = false;
     //validate that both name and at least one dice role has been entered
     function validateForm() {
         if ($("#Name").val() != "") {
@@ -112,10 +113,27 @@
 
     });
 
+    //prompt user for deleting character
+    function confirmDelete() {
+        if (confirm("Are you sure you want to delete @Model.Name?")) {
+            $("#delete-character").attr("data-ajax", "true");
+            deleteConfirmed = true;
+            return true;
+
+        } else {
+            return false;
+
+        }
+
+    }
+
     //when the character has been deleted, set the character container to be empty 
     $("#delete-character").click(function (e) {
         e.preventDefault();
-        $("#character-container").html("");
+        if (deleteConfirmed) {
+            $("#character-container").html("");
+
+        }
     });
 
 </script>
