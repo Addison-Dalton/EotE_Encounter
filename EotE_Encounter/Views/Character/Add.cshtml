@@ -49,10 +49,6 @@
         @Html.LabelFor(c => c.Notes)
         @Html.TextAreaFor(c => c.Notes, new { @rows = 4, @class = "form-control textarea-disable-resize" })
     </div>
-    <div class="form-group">
-        @Html.LabelFor(c => c.Saved)
-        @Html.CheckBoxFor(c => c.Saved, new { @class = "checkbox" })
-    </div>
     <div>
         <input type="hidden" id="encounterId" name="encounterId" value="@ViewBag.EncounterId" />
     </div>

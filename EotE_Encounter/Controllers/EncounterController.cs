@@ -125,21 +125,13 @@ namespace EotE_Encounter.Controllers
         }
 
         //deletes all characters from encounter
-        //Saved character's have their EncounterId set to null
         public ActionResult Clear()
         {
             List<Character> characters = _context.Characters.ToList();
             int? tempEncounterId = characters[0].EncounterId;
             foreach(Character character in characters)
             {
-                if(character.Saved != true)
-                {
-                    _context.Characters.Remove(character);
-                }
-                else
-                {
-                    character.EncounterId = null;
-                }
+                _context.Characters.Remove(character);
             }
             _context.SaveChanges();
             return RedirectToAction("Details", new { encounterId = tempEncounterId });
